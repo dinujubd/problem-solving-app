@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { Modal, Table, Tag } from 'antd';
 import { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Table, Tag, Space, Modal } from 'antd';
 
 const Problem: React.FC = () => {
     const [modalState, setModalState] = useState<{ isVisible: boolean; data: any }>({ isVisible: false, data: {} });

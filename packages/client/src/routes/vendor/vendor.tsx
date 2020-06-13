@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, Button, Form, Table } from 'antd';
+import { Button, Form, Input, Table } from 'antd';
 import 'antd/dist/antd.css';
 
 const Vendor: React.FC = () => {
