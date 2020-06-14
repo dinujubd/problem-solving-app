@@ -8,7 +8,9 @@
     "scripts": {
         "build": "lerna run build",
         "start": "lerna run start",
-        "dev": "lerna run dev"
+        "dev": "lerna run dev",
+        "su-test": "lerna run su-test --scope=client --stream",
+        "test": "lerna run test --stream"
     },
     "workspaces": [
         "packages/*"

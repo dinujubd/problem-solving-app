@@ -1,0 +1,350 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Vendor /> 1`] = `
+<div>
+  <form
+    className="ant-form ant-form-horizontal"
+    id="control-ref"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-col-6 ant-form-item-label"
+        style={Object {}}
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="control-ref_name"
+          title="Name"
+        >
+          Name
+        </label>
+      </div>
+      <div
+        className="ant-col ant-col-12 ant-form-item-control"
+        style={Object {}}
+      >
+        <div
+          className="ant-form-item-control-input"
+        >
+          <div
+            className="ant-form-item-control-input-content"
+          >
+            <input
+              className="ant-input"
+              id="control-ref_name"
+              name="name"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Name of the vendor"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-col-6 ant-form-item-label"
+        style={Object {}}
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="control-ref_url"
+          title="Url"
+        >
+          Url
+        </label>
+      </div>
+      <div
+        className="ant-col ant-col-12 ant-form-item-control"
+        style={Object {}}
+      >
+        <div
+          className="ant-form-item-control-input"
+        >
+          <div
+            className="ant-form-item-control-input-content"
+          >
+            <input
+              className="ant-input"
+              id="control-ref_url"
+              name="url"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Url of the vendor"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-col-16 ant-col-offset-8 ant-form-item-control"
+        style={Object {}}
+      >
+        <div
+          className="ant-form-item-control-input"
+        >
+          <div
+            className="ant-form-item-control-input-content"
+          >
+            <button
+              className="ant-btn ant-btn-primary"
+              onClick={[Function]}
+              type="submit"
+            >
+              <span>
+                Submit
+              </span>
+            </button>
+            <button
+              className="ant-btn"
+              onClick={[Function]}
+              type="button"
+            >
+              <span>
+                Reset
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <h3>
+    Vendors
+  </h3>
+  <div
+    className="ant-table-wrapper"
+  >
+    <div
+      className="ant-spin-nested-loading"
+    >
+      <div
+        className="ant-spin-container"
+      >
+        <div
+          className="ant-table"
+        >
+          <div
+            className="ant-table-container"
+          >
+            <div
+              className="ant-table-content"
+              onScroll={[Function]}
+              style={Object {}}
+            >
+              <table
+                style={
+                  Object {
+                    "tableLayout": "auto",
+                  }
+                }
+              >
+                <colgroup />
+                <thead
+                  className="ant-table-thead"
+                >
+                  <tr>
+                    <th
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Vendor Name
+                    </th>
+                    <th
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Vendor Url
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  className="ant-table-tbody"
+                >
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="https://leetcode.com"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Leet Code
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      https://leetcode.com
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="https://hackerrank.com"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Hacker Rank
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      https://hackerrank.com
+                    </td>
+                  </tr>
+                  <tr
+                    className="ant-table-row ant-table-row-level-0"
+                    data-row-key="https://codility.com"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Codility
+                    </td>
+                    <td
+                      className="ant-table-cell"
+                      colSpan={null}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      https://codility.com
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <ul
+          className="ant-pagination ant-table-pagination ant-table-pagination-right"
+          style={Object {}}
+          unselectable="unselectable"
+        >
+          <li
+            aria-disabled={true}
+            className="ant-pagination-prev ant-pagination-disabled"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            tabIndex={null}
+            title="Previous Page"
+          >
+            <a
+              className="ant-pagination-item-link"
+              disabled={true}
+            >
+              <span
+                aria-label="left"
+                className="anticon anticon-left"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="left"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+                  />
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li
+            className="ant-pagination-item ant-pagination-item-1 ant-pagination-item-active"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            tabIndex="0"
+            title={1}
+          >
+            <a>
+              1
+            </a>
+          </li>
+          <li
+            aria-disabled={true}
+            className="ant-pagination-next ant-pagination-disabled"
+            onClick={[Function]}
+            onKeyPress={[Function]}
+            tabIndex={null}
+            title="Next Page"
+          >
+            <a
+              className="ant-pagination-item-link"
+              disabled={true}
+            >
+              <span
+                aria-label="right"
+                className="anticon anticon-right"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="right"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                  />
+                </svg>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;

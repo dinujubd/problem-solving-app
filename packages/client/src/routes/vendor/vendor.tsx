@@ -48,10 +48,8 @@ const Vendor: React.FC = () => {
 
         <h3>Vendors</h3>
 
-        <Table columns={collumns} dataSource={data}>
-
-        </Table>
-    </div>;
+        <Table columns={collumns} dataSource={data} rowKey="url" />
+    </div >;
 };
 
 export default Vendor;
