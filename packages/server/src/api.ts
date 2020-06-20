@@ -9,21 +9,31 @@ const port = 8181;
 const problemsRepo = new DbOperations('problems');
 const algoRepo = new DbOperations('algorithms');
 const dsRepo = new DbOperations('dataStructures');
-const verndorRepo = new DbOperations('dataStructures');
+const verndorRepo = new DbOperations('vendors');
 
 app.use(bodyParser.json());
 app.use(
     cors({
-        origin: 'http://localhost:8080',
+        origin: 'http://localhost:3000',
         optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     })
 );
 
-app.get('/problems', (req, res) => {
-    res.json(new DbOperations('problems').list());
-});
 app.get('/vendors', (req, res) => {
     res.json(verndorRepo.list());
+});
+
+app.post('/vendors', (req, res) => {
+    res.json(verndorRepo.create(req.body));
+});
+
+app.post('/vendor/delete', (req, res) => {
+    verndorRepo.delete(req.body.id);
+    res.json(verndorRepo.list());
+});
+
+app.get('/problems', (req, res) => {
+    res.json(new DbOperations('problems').list());
 });
 
 app.get('/problems/:problem_id', (req, res) => {
@@ -80,25 +90,29 @@ app.get('/ds', (req, res) => {
     res.json(dsRepo.list());
 });
 
-app.get('/ds/:ds_id', (req, res) => {
-    res.json(problemsRepo.get(req.params.ds_id));
-});
-
 app.post('/ds', (req, res) => {
     res.json(dsRepo.create(req.body));
 });
 
-app.put('/ds', (req, res) => {
-    res.json(dsRepo.update(req.body));
-});
-
 app.post('/ds/delete', (req, res) => {
-    dsRepo.delete(req.body.title);
-    res.json(true);
+    dsRepo.delete(req.body.id);
+    res.json(dsRepo.list());
 });
 
-app.get('/ds/search', (req, res) => {
-    res.json(dsRepo.search(req.query.key.toString()));
-});
+// app.get('/ds/:ds_id', (req, res) => {
+//     res.json(problemsRepo.get(req.params.ds_id));
+// });
+
+
+
+// app.put('/ds', (req, res) => {
+//     res.json(dsRepo.update(req.body));
+// });
+
+
+
+// app.get('/ds/search', (req, res) => {
+//     res.json(dsRepo.search(req.query.key.toString()));
+// });
 
 app.listen(port, () => console.log('server up!'));

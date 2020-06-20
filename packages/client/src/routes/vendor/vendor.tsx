@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { Button, Form, Input, Table } from 'antd';
+import axios from 'axios'
 import 'antd/dist/antd.css';
 
 const Vendor: React.FC = () => {
+
+    const [vendorData, setVendorData] = React.useState([]);
+    const [form] = Form.useForm();
+
     const layout = {
         labelCol: { span: 6 },
         wrapperCol: { span: 12 },
@@ -10,6 +15,17 @@ const Vendor: React.FC = () => {
     const tailLayout = {
         wrapperCol: { offset: 8, span: 16 },
     };
+
+    const onRowDelete = (id: any) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        axios.post("http://localhost:8181/vendor/delete", { id: id }, {
+            headers: headers
+        }).then((response) => {
+            setVendorData(response.data)
+        })
+    }
 
     const collumns = [{
         title: 'Vendor Name',
@@ -19,20 +35,46 @@ const Vendor: React.FC = () => {
         title: 'Vendor Url',
         dataIndex: 'url',
         key: 'url',
-    }];
-    const data = [{
-        name: "Leet Code",
-        url: "https://leetcode.com"
-    }, {
-        name: "Hacker Rank",
-        url: "https://hackerrank.com"
-    }, {
-        name: "Codility",
-        url: "https://codility.com"
+    },
+    {
+        title: 'Action',
+        dataIndex: '',
+        key: 'x',
+        render: (item: any) => {
+            return <a onClick={(e) => { e.preventDefault(); onRowDelete(item.id) }}>Delete</a>
+        }
     }];
 
+
+    React.useEffect(() => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        axios.get("http://localhost:8181/vendors", {
+            headers: headers
+        }).then((response) => {
+            setVendorData(response.data);
+        })
+    }, [])
+
+    const onFinish = (values: any) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        axios.post("http://localhost:8181/vendors", values, {
+            headers: headers
+        }).then((response) => {
+            form.resetFields();
+            setVendorData(response.data)
+        })
+    };
+
+    const onReset = () => {
+        form.resetFields();
+    };
+
     return <div>
-        <Form {...layout} name="control-ref">
+        <Form {...layout} form={form} name="control-ref" onFinish={onFinish}>
             <Form.Item name="name" label="Name" rules={[{ required: true }]}>
                 <Input name="name" placeholder="Name of the vendor" />
             </Form.Item>
@@ -42,13 +84,13 @@ const Vendor: React.FC = () => {
             </Form.Item>
             <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit">Submit</Button>
-                <Button htmlType="button">Reset</Button>
+                <Button onClick={onReset} htmlType="button">Reset</Button>
             </Form.Item>
         </Form>
 
         <h3>Vendors</h3>
 
-        <Table columns={collumns} dataSource={data} rowKey="url" />
+        <Table columns={collumns} dataSource={vendorData} rowKey="url" />
     </div >;
 };
 

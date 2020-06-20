@@ -1,6 +1,10 @@
-import * as low from 'lowdb';
-import * as uuidv4 from 'uuid';
-import * as FileSync from 'lowdb/adapters/FileSync';
+// import * as low from 'lowdb';
+import { v4 } from 'uuid';
+// import * as FileSync from 'lowdb/adapters/FileSync';
+
+
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync');
 
 export class Problem {
     id: string;
@@ -16,6 +20,8 @@ export interface Algorithm {
 
 export interface Vendor {
     id: string;
+    name: string;
+    url: string;
 }
 
 interface Database {
@@ -26,10 +32,20 @@ interface Database {
 }
 
 export class DbOperations {
-    adapter = new FileSync<Database>('db.json');
-    db = low(this.adapter);
 
-    constructor(private TName: keyof Database) {}
+    // adapter = new FileSync<Database>('db.json');
+
+    // db = low(this.adapter);
+
+    adapter = null;
+    db = null;
+
+    constructor(private TName: keyof Database) {
+        this.adapter = new FileSync('db.json')
+        this.db = low(this.adapter)
+        this.db.defaults({ vendors: [], problems: [], algorithms: [], dataStructures: [] })
+            .write()
+    }
 
     get(id: string) {
         return this.db.get(this.TName).find({ id: id })[0];
@@ -43,9 +59,9 @@ export class DbOperations {
             .value();
     }
 
-    create(obj: Problem | DataStructure | Algorithm | Vendor) {
-        obj.id = uuidv4();
-
+    create(obj: Vendor | DataStructure) {
+        obj.id = obj.id || v4();
+        console.log(obj);
         return this.db.get(this.TName).push(obj).write();
     }
     update(obj: Problem | DataStructure | Algorithm | Vendor) {
