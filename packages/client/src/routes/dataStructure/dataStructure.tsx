@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Button, Form, Input, Table } from 'antd';
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
+import { DataStructure } from "shared/types";
 import 'antd/dist/antd.css';
 
 const DataStructure: React.FC = () => {
 
-    const [dataStructures, setDataStructures] = React.useState([]);
+    const [dataStructures, setDataStructures] = React.useState<Array<DataStructure>>([]);
     const [form] = Form.useForm();
 
     const layout = {
@@ -16,18 +17,8 @@ const DataStructure: React.FC = () => {
         wrapperCol: { offset: 8, span: 16 },
     };
 
-    const onRowDelete = (id: any) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
-        axios.post("http://localhost:8181/ds/delete", { id: id }, {
-            headers: headers
-        }).then((response) => {
-            setDataStructures(response.data)
-        })
-    }
 
-    const collumns = [{
+    const columns = [{
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
@@ -46,18 +37,30 @@ const DataStructure: React.FC = () => {
         const headers = {
             'Content-Type': 'application/json'
         }
-        axios.get("http://localhost:8181/ds", {
+        axios.get<DataStructure[]>("http://localhost:8181/ds", {
             headers: headers
         }).then((response) => {
             setDataStructures(response.data);
         })
     }, [])
 
+    const onRowDelete = (id: any) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        axios.post<{id:string},AxiosResponse<Array<DataStructure>>>("http://localhost:8181/ds/delete", { id: id }, {
+            headers: headers
+        }).then((response) => {
+            setDataStructures(response.data)
+        })
+    }
+
+
     const onFinish = (values: any) => {
         const headers = {
             'Content-Type': 'application/json'
         }
-        axios.post("http://localhost:8181/ds", values, {
+        axios.post<DataStructure,AxiosResponse<Array<DataStructure>>>("http://localhost:8181/ds", values, {
             headers: headers
         }).then((response) => {
             form.resetFields();
@@ -82,7 +85,7 @@ const DataStructure: React.FC = () => {
 
         <h3>Data Structures</h3>
 
-        <Table columns={collumns} dataSource={dataStructures} rowKey="url" />
+        <Table columns={columns} dataSource={dataStructures} rowKey="url" />
     </div >;
 };
 
