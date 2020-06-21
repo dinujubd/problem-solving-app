@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Modal, Table, Tag } from 'antd';
-import { useState } from 'react';
+import { useHistory } from 'react-router-dom'
+import { Table, Tag } from 'antd';
 import 'antd/dist/antd.css';
 
 const Problem: React.FC = () => {
-    const [modalState, setModalState] = useState<{ isVisible: boolean; data: any }>({ isVisible: false, data: {} });
-
+    const history = useHistory();
     const columns = [
         {
             title: 'Problem Title',
@@ -96,6 +95,7 @@ const Problem: React.FC = () => {
             level: 'hard',
             comments: '',
             link: '',
+            id: "1231-asdas2-asdad-asdad"
         },
         {
             title: 'Four Sum',
@@ -107,24 +107,17 @@ const Problem: React.FC = () => {
             level: 'easy',
             comments: '',
             link: '',
+            id: "rgfeg-asdas2-asdad-asdad"
         },
     ];
 
-    const DynamicModal: React.FC<{ isVisible: boolean; data: any }> = ({ isVisible, data }) => (
-        <Modal onCancel={() => setModalState({ data: {}, isVisible: false })} title="Basic Modal" visible={isVisible}>
-            <p>{data.title}</p>
-            <p>{data.level}</p>
-        </Modal>
-    );
-
     return (
         <>
-            <DynamicModal {...modalState} />
             <Table
-                onRow={(record, rowIndex) => {
+                onRow={(record) => {
                     return {
-                        onClick: (event) => {
-                            setModalState({ ...modalState, data: record, isVisible: true });
+                        onClick: () => {
+                            history.push(`/problems/detail/${record.id}`)
                         },
                     };
                 }}
