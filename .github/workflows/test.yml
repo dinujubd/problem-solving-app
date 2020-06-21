@@ -25,7 +25,11 @@ jobs:
     # Install Lerna
     - name: Install lerna
       run: sudo npm install -g lerna@3.22.0
+    
+    # Install Lerna
+    - name: Install packages
+      run: sudo yarn install
 
     # Runs a single command using the runners shell
     - name: Run Test
-      run: yarn test
+      run: sudo yarn test
