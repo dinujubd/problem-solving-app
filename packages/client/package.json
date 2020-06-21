@@ -22,8 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "su-test": "react-scripts test -u",
+    "test": "react-scripts test --watchAll=false",
+    "su-test": "react-scripts test -u --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
