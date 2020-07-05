@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Button, Form, Input, Table } from "antd";
+import { Button, Form, Input, Table, Select, Tag } from "antd";
 import axios, { AxiosResponse } from "axios";
-import { DataStructure } from "shared/types";
+import { DataStructure as DataStructuretype } from "shared/types";
 import "antd/dist/antd.css";
 
 const DataStructure: React.FC = () => {
   const [dataStructures, setDataStructures] = React.useState<
-    Array<DataStructure>
+    Array<DataStructuretype>
   >([]);
   const [form] = Form.useForm();
 
@@ -24,6 +24,26 @@ const DataStructure: React.FC = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+    }, {
+      title: 'Short Name',
+      dataIndex: 'short',
+      key: 'short',
+      render: (short: string) => {
+        return short &&
+          <Tag color={'geekblue'} key={short}>
+            {short.toLowerCase()}
+          </Tag>
+      }
+
+    },
+    {
+      title: 'Parent',
+      dataIndex: 'parent',
+      key: 'parent',
+      render: (parent: string) => {
+        return dataStructures.find(r => r.id === parent)?.name;
+
+      }
     },
     {
       title: "Action",
@@ -49,7 +69,7 @@ const DataStructure: React.FC = () => {
       "Content-Type": "application/json",
     };
     axios
-      .get<DataStructure[]>("http://localhost:8181/ds", {
+      .get<DataStructuretype[]>("http://localhost:8181/ds", {
         headers: headers,
       })
       .then((response) => {
@@ -62,7 +82,7 @@ const DataStructure: React.FC = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post<{ id: string }, AxiosResponse<Array<DataStructure>>>(
+      .post<{ id: string }, AxiosResponse<Array<DataStructuretype>>>(
         "http://localhost:8181/ds/delete",
         { id: id },
         {
@@ -78,7 +98,7 @@ const DataStructure: React.FC = () => {
       "Content-Type": "application/json",
     };
     axios
-      .post<DataStructure, AxiosResponse<Array<DataStructure>>>(
+      .post<DataStructuretype, AxiosResponse<Array<DataStructuretype>>>(
         "http://localhost:8181/ds",
         values,
         {
@@ -98,8 +118,20 @@ const DataStructure: React.FC = () => {
   return (
     <div>
       <Form {...layout} form={form} name="control-ref" onFinish={onFinish}>
-        <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+         <Form.Item name="name" label="Name" rules={[{ required: true }]}>
           <Input name="name" placeholder="Name of the Data Structure" />
+        </Form.Item>
+        <Form.Item name="short" label="Short Name">
+          <Input name="short" placeholder="Short Name of the Data Structure" />
+        </Form.Item>
+        <Form.Item name="parent" label="Parent">
+          <Select
+            placeholder="Please select"
+            defaultValue={[]}
+          >
+            {dataStructures.map((item) => <Select.Option key={item.id} value={item.id}>{item.name}</Select.Option>)}
+
+          </Select>
         </Form.Item>
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">

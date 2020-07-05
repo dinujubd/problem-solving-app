@@ -1,5 +1,11 @@
 {
-  "vendors": [],
+  "vendors": [
+    {
+      "name": "LeetCode",
+      "url": "https://leetcode.com",
+      "id": "0e54c1d1-4d05-434b-9fe7-b86ed3300193"
+    }
+  ],
   "problems": [],
   "algorithms": [
     {
@@ -17,44 +23,33 @@
     {
       "name": "Recursion",
       "id": "9c1a0282-2651-46a8-8816-0c4bf826ec61"
+    },
+    {
+      "name": "Test with tags",
+      "tags": [
+        "Dynamic Programming",
+        "Greedy",
+        "Search"
+      ],
+      "id": "ce25639d-a446-4660-bcf3-d5463c1cc40b"
     }
   ],
   "dataStructures": [
     {
-      "name": "array",
-      "id": "352d8602-60b7-443d-9503-c0338c8df1f2"
+      "name": "Array",
+      "short": "array",
+      "id": "b348b504-ce34-4df9-aee5-fcc7c7ce6651"
     },
     {
-      "name": "linked-list",
-      "id": "0e2257bd-44a1-4d13-be12-a4bf9579b500"
+      "name": "Linked List",
+      "short": "linked-list",
+      "id": "634c2ec7-c26b-47df-95fd-d02057fd136a"
     },
     {
-      "name": "stack",
-      "id": "eb549510-2a04-408a-ad20-0d5ef6ed018a"
-    },
-    {
-      "name": "queue",
-      "id": "627e1049-84d6-4bb7-b08c-518ae17af5e8"
-    },
-    {
-      "name": "tree",
-      "id": "f5af5beb-1d15-47fd-bdaa-946ac4ca6327"
-    },
-    {
-      "name": "graph",
-      "id": "f1527687-53f1-4142-9604-a051a234b73f"
-    },
-    {
-      "name": "hash-map",
-      "id": "f7cab27a-0f13-4c25-aee8-4193427a5158"
-    },
-    {
-      "name": "trie",
-      "id": "4c0caf66-ea6c-4c8b-ae33-acb56d64130d"
-    },
-    {
-      "name": "heap",
-      "id": "0bd12efd-9fd1-40bc-929f-a221c0934fb2"
+      "name": "Doubly Linked List",
+      "short": "doubly-linked-list",
+      "parent": "634c2ec7-c26b-47df-95fd-d02057fd136a",
+      "id": "7871d080-a77d-4976-b42c-e7dfe181f73c"
     }
   ]
 }

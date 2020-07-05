@@ -27,8 +27,8 @@ app.post('/vendors', (req, res) => {
     res.json(verndorRepo.create(req.body));
 });
 
-app.post('/vendor/delete', (req, res) => {
-    verndorRepo.delete(req.body.id);
+app.delete('/vendor/:id', (req, res) => {
+    verndorRepo.delete(req.params.id);
     res.json(verndorRepo.list());
 });
 
@@ -76,8 +76,8 @@ app.put('/algorithms', (req, res) => {
 });
 
 app.post('/algorithms/delete', (req, res) => {
-    algoRepo.delete(req.body.title);
-    res.json(true);
+    algoRepo.delete(req.body.id);
+    res.json(algoRepo.list());
 });
 
 app.get('/problems/search', (req, res) => {

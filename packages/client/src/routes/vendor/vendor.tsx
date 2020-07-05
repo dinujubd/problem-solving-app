@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Button, Form, Input, Table } from 'antd';
-import axios from 'axios'
 import 'antd/dist/antd.css';
+import { Vendor as VendorType } from 'shared/types';
+import { httpClient } from '../../service/httpClient'
 
 const Vendor: React.FC = () => {
 
-    const [vendorData, setVendorData] = React.useState([]);
+    const [vendorData, setVendorData] = React.useState<VendorType[]>([]);
     const [form] = Form.useForm();
 
     const layout = {
@@ -15,17 +16,6 @@ const Vendor: React.FC = () => {
     const tailLayout = {
         wrapperCol: { offset: 8, span: 16 },
     };
-
-    const onRowDelete = (id: any) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
-        axios.post("http://localhost:8181/vendor/delete", { id: id }, {
-            headers: headers
-        }).then((response) => {
-            setVendorData(response.data)
-        })
-    }
 
     const collumns = [{
         title: 'Vendor Name',
@@ -47,31 +37,26 @@ const Vendor: React.FC = () => {
 
 
     React.useEffect(() => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
-        axios.get("http://localhost:8181/vendors", {
-            headers: headers
-        }).then((response) => {
-            setVendorData(response.data);
-        })
+        httpClient.req<VendorType[]>("VENDOR:GET", null, ((vendors: VendorType[]) => {
+            setVendorData(vendors);
+        }));
     }, [])
 
-    const onFinish = (values: any) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
-        axios.post("http://localhost:8181/vendors", values, {
-            headers: headers
-        }).then((response) => {
-            form.resetFields();
-            setVendorData(response.data)
+    const onRowDelete = React.useCallback((id: any) => {
+        httpClient.req<any>("VENDOR:DELETE",id,(vendors:VendorType[])=>{
+            setVendorData(vendors)
         })
-    };
+    },[vendorData]);
+    const onFinish = React.useCallback((values: any) => {
+        httpClient.req<VendorType[]>("VENDOR:POST", values, ((response: VendorType[]) => {
+            setVendorData(response);
+            form.resetFields();
+        }));
+    },[vendorData]);
 
-    const onReset = () => {
+    const onReset = React.useCallback(() => {
         form.resetFields();
-    };
+    },[form]);
 
     return <div>
         <Form {...layout} form={form} name="control-ref" onFinish={onFinish}>
