@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
+import { Row, Col } from "antd";
+import { Problem } from "shared/types";
 
 const ProblemDetail: React.FC = () => {
-  const [detail, setDetail] = useState<any>(null);
-  const params:any = useParams();
-
+  const [detail, setDetail] = useState<Problem | null>(null);
+  const params: any = useParams();
 
   useEffect(() => {
     const headers = {
@@ -22,7 +23,23 @@ const ProblemDetail: React.FC = () => {
       });
   }, []);
 
-return <div></div>;
+  return <div>
+    <Row>
+      <Col span={16}>
+        <h2>{detail?.title}</h2>
+<p>{detail?.description}</p>
+
+<pre>
+  {detail?.solutions[0].sourceCodes}
+</pre>
+      </Col>
+        <Col offset={1} span={7}>
+          <h3>Solutions</h3>
+{detail?.solutions.map(x => <h4>{x.title} {x.timeComplexity}</h4>)}
+        </Col>
+
+    </Row>
+  </div>;
 };
 
 export default ProblemDetail;
