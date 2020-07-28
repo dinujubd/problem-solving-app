@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, Form, Input, Table, Select, Tag } from 'antd';
 import axios from 'axios';
 import 'antd/dist/antd.css';
+import { FormButton } from '../../components/FormButton/FormButton.styled';
 
 const Algorithm: React.FC = () => {
 
@@ -13,7 +14,7 @@ const Algorithm: React.FC = () => {
         wrapperCol: { span: 12 },
     };
     const tailLayout = {
-        wrapperCol: { offset: 8, span: 16 },
+        wrapperCol: { offset: 6, span: 18 },
     };
 
     const algorithmTypes = [
@@ -127,8 +128,8 @@ const Algorithm: React.FC = () => {
                 </Select>
             </Form.Item>
             <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit">Submit</Button>
-                <Button onClick={onReset} htmlType="button">Reset</Button>
+                <FormButton type="primary" htmlType="submit">Submit</FormButton >
+                <FormButton onClick={onReset} htmlType="button">Reset</FormButton >
             </Form.Item>
         </Form>
 

@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import TextArea from 'antd/lib/input/TextArea';
 import { Solution } from 'shared/types/solution';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { FormButton } from '../../components/FormButton/FormButton.styled';
 
 const ProblemForm: React.FC = () => {
     const [form] = Form.useForm();
@@ -15,7 +16,7 @@ const ProblemForm: React.FC = () => {
         wrapperCol: { span: 12 },
     };
     const tailLayout = {
-        wrapperCol: { offset: 8, span: 16 },
+        wrapperCol: { offset:6, span: 18 },
     };
 
     const onFinish = (values: any) => {
@@ -164,8 +165,8 @@ const ProblemForm: React.FC = () => {
             </Form.List>
 
             <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit">Submit</Button>
-                <Button onClick={onReset} htmlType="button">Reset</Button>
+                <FormButton type="primary" htmlType="submit">Submit</FormButton >
+                <FormButton onClick={onReset} htmlType="button">Reset</FormButton >
             </Form.Item>
         </Form>
     </div >;

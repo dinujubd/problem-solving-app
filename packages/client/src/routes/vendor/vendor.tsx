@@ -3,6 +3,7 @@ import { Button, Form, Input, Table } from 'antd';
 import 'antd/dist/antd.css';
 import { Vendor as VendorType } from 'shared/types';
 import { httpClient } from '../../service/httpClient'
+import { FormButton } from '../../components/FormButton/FormButton.styled';
 
 const Vendor: React.FC = () => {
 
@@ -14,7 +15,7 @@ const Vendor: React.FC = () => {
         wrapperCol: { span: 12 },
     };
     const tailLayout = {
-        wrapperCol: { offset: 8, span: 16 },
+        wrapperCol: { offset: 6, span: 18 },
     };
 
     const collumns = [{
@@ -68,8 +69,8 @@ const Vendor: React.FC = () => {
                 <Input name="url" placeholder="Url of the vendor" />
             </Form.Item>
             <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit">Submit</Button>
-                <Button onClick={onReset} htmlType="button">Reset</Button>
+                <FormButton type="primary" htmlType="submit">Submit</FormButton>
+                <FormButton onClick={onReset} htmlType="button">Reset</FormButton>
             </Form.Item>
         </Form>
 

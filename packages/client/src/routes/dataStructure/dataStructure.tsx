@@ -3,6 +3,7 @@ import { Button, Form, Input, Table, Select, Tag } from "antd";
 import axios, { AxiosResponse } from "axios";
 import { DataStructure as DataStructuretype } from "shared/types";
 import "antd/dist/antd.css";
+import { FormButton } from "../../components/FormButton/FormButton.styled";
 
 const DataStructure: React.FC = () => {
   const [dataStructures, setDataStructures] = React.useState<
@@ -16,7 +17,7 @@ const DataStructure: React.FC = () => {
   };
 
   const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
+    wrapperCol: { offset: 6, span: 18},
   };
 
   const columns = [
@@ -134,12 +135,12 @@ const DataStructure: React.FC = () => {
           </Select>
         </Form.Item>
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <FormButton type="primary" htmlType="submit">
             Submit
-          </Button>
-          <Button onClick={onReset} htmlType="button">
+          </FormButton >
+          <FormButton onClick={onReset} htmlType="button">
             Reset
-          </Button>
+          </FormButton >
         </Form.Item>
       </Form>
 
