@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom'
-import { Table, Tag } from 'antd';
+import { Table, Tag, Row, Col, Button } from 'antd';
 import 'antd/dist/antd.css';
+import { Problem as ProblemType } from 'shared/types';
+import axios from "axios";
 
 const Problem: React.FC = () => {
     const history = useHistory();
+    const [problems, setProblems] = React.useState();
     const columns = [
         {
             title: 'Problem Title',
@@ -15,48 +18,6 @@ const Problem: React.FC = () => {
             title: 'Vendor',
             dataIndex: 'vendor',
             key: 'vendor',
-        },
-        {
-            title: 'Algorithm',
-            dataIndex: 'algorithm',
-            key: 'algorithm',
-            render: (tags: string[]) => (
-                <>
-                    {tags.map((tag) => {
-                        return (
-                            <Tag color={'geekblue'} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
-        },
-        {
-            title: 'Data Structures',
-            dataIndex: 'dataStructures',
-            key: 'dataStructures',
-            render: (tags: string[]) => (
-                <>
-                    {tags.map((tag) => {
-                        return (
-                            <Tag color={'geekblue'} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
-        },
-        {
-            title: 'Time',
-            dataIndex: 'time',
-            key: 'time',
-        },
-        {
-            title: 'Space',
-            dataIndex: 'space',
-            key: 'space',
         },
         {
             title: 'Level',
@@ -77,20 +38,35 @@ const Problem: React.FC = () => {
                         color={colorMap[tag]}
                         key={tag}
                     >
-                        {tag.toUpperCase()}
+                        {tag && tag.toUpperCase()}
                     </Tag>
                 );
             },
         },
     ];
 
+
+    React.useEffect(() => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        axios.get("http://localhost:8181/problems", {
+            headers: headers
+        }).then((response) => {
+            setProblems(response.data);
+        })
+    }, [])
+
+
+
+
     const data = [
         {
             title: 'Three Sum',
             vendor: 'LeetCode',
-            algorithm: ['BFS', 'DFS'],
+            algorithms: ['BFS', 'DFS'],
             dataStructures: ['Stack', 'Array'],
-            time: 'O(n)',
+            timeComplexit: 'O(n)',
             space: 'O(1)',
             level: 'hard',
             comments: '',
@@ -100,7 +76,7 @@ const Problem: React.FC = () => {
         {
             title: 'Four Sum',
             vendor: 'Hacker Rank',
-            algorithm: ['BFS', 'DFS'],
+            algorithms: ['BFS', 'DFS'],
             dataStructures: ['Queue', 'Graph'],
             time: 'O(n)',
             space: 'O(1)',
@@ -111,8 +87,19 @@ const Problem: React.FC = () => {
         },
     ];
 
+
+
+
+    const onCreateNewBtnClickHandler = () => {
+
+        history.push('/problems/create');
+    }
+
     return (
         <>
+            <Row>
+                <Col offset={21} span={3}><Button onClick={onCreateNewBtnClickHandler}>Create New</Button></Col>
+            </Row>
             <Table
                 onRow={(record) => {
                     return {
@@ -122,7 +109,7 @@ const Problem: React.FC = () => {
                     };
                 }}
                 columns={columns}
-                dataSource={data}
+                dataSource={problems}
             />
         </>
     );
