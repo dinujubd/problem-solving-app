@@ -1,7 +1,11 @@
 export interface Solution {
     id: string;
-    problem: string;
-    link: string;
-    dataStructures: string[],
-    algorithms: string[]
+    title: string;
+    sourceCodes: {language: string; code: string;}[];
+    dataStructures: string[];
+    algorithms: string[];
+    timeComplexity: string;
+    spaceComplexity: string;
+    level: string;
+    comments: string;
 }

@@ -4,5 +4,8 @@ export interface Problem {
     id: string;
     title: string;
     link: string;
-    solutions: Solution[]
+    vendor: string;
+    level: string;
+    description: string;
+    solutions: Solution[];
 }
