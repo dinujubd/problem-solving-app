@@ -31,13 +31,11 @@ app.delete('/vendor/:id', (req, res) => {
     verndorRepo.delete(req.params.id);
     res.json(verndorRepo.list());
 });
-
-app.get('/problems', (req, res) => {
-    res.json(new DbOperations('problems').list());
-});
-
 app.get('/problems/:problem_id', (req, res) => {
     res.json(problemsRepo.get(req.params.problem_id));
+});
+app.get('/problems', (req, res) => {
+    res.json(problemsRepo.list());
 });
 
 app.post('/problems', (req, res) => {
