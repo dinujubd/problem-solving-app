@@ -29,7 +29,7 @@ export class DbOperations {
   }
 
   get(id: string) {
-    return this.db.get(this.TName).find({ id: id })[0];
+    return this.db.get(this.TName).filter(x =>x.id===id).value()[0];
   }
 
   list(pageNo: number = 0, pageSize: number = 20) {
