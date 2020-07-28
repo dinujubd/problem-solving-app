@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import './app.css';
 import 'antd/dist/antd.css';
+import ProblemForm from './routes/problem/problemForm';
 
 
 const App: React.FC = () => {
@@ -24,6 +25,7 @@ const App: React.FC = () => {
                     <Header collapsed={isCollapsed} onToggle={toggle} />
                     <Container>
                         <Switch>
+                            <Route path="/problems/create" component={ProblemForm} />
                             <Route path="/problems/detail/:problem_id" component={ProblemDetail} />
                             <Route path="/data-structures" component={DataStructure} />
                             <Route path="/algorithms" component={Algorithm} />
